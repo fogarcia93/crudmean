@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="row">
+      <div class="col s5">
+        <div class="card">
+          <div class="card-content">
+            <form #empleadoForm="ngForm" (ngSubmit)="AgregarEmpleado(empleadoForm)">
+              <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="empleadoService.selectedEmpleado._id" >
+            <div class="row">
+              <div class="input-field col-s12">
+                <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="empleadoService.selectedEmpleado.nombre" placeholder="Ingrese el Nombre">
+              </div>
+              <div class="input-field col-s12">
+                <input type="text" name="puesto" #puesto="ngModel" [(ngModel)]="empleadoService.selectedEmpleado.puesto" placeholder="Ingrese el Puesto">
+              </div>
+              <div class="input-field col-s12">
+                <input type="text" name="ciudad" #ciudad="ngModel" [(ngModel)]="empleadoService.selectedEmpleado.ciudad" placeholder="Ingrese la Ciudad">
+              </div>
+              <div class="input-field col-s12">
+                <input type="text" name="salario" #salario="ngModel" [(ngModel)]="empleadoService.selectedEmpleado.salario" placeholder="Ingrese su Salario">
+              </div>
+            <div class="card-action">
+              <div class="input-field col s12">
+                <button class="btn right" style="margin-left: 3px;">Guardar</button>
+                <button class="btn right" (click)="resetForm(empleadoForm)">Limpiar</button>
+              </div>
+            </div>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col s7">
+        <table>
+          <thead>
+            <th>Nombre</th>
+            <th>Puesto</th>
+            <th>Ciudad</th>
+            <th>Salario</th>
+            <th>Operaciones</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let empleado of empleadoService.empleados">
+              <td>{{ empleado.nombre}}</td>
+              <td>{{ empleado.puesto}}</td>
+              <td>{{ empleado.ciudad}}</td>
+              <td>{{ empleado.salario}}</td>
+              <td>
+                <a (click)="editarEmpleado(empleado)">
+                  <i class="material-icons">edit</i>
+                </a>
+                <a (click)="eliminarEmpleado(empleado._id)">
+                    <i class="material-icons">delete</i>
+                  </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+             
